@@ -1,0 +1,47 @@
+{
+  "name": "@younho9/semantic-release-test",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "author": "Younho Choo <younho9.choo@gmail.com>",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "concurrently yarn:build:*",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.4",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3",
+    "semantic-release": "^17.4.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/younho9/semantic-release-test.git"
+  }
+}
